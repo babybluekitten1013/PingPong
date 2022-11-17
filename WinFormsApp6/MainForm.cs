@@ -14,7 +14,7 @@ namespace WinFormsApp6
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             Top = this.Width / 2;
             Left = this.Height / 2;
@@ -24,14 +24,14 @@ namespace WinFormsApp6
             BallRatio = FormWidth / (double)FormHeight * 100;
         }
 
-        private void Form1_Paint(object sender, PaintEventArgs e)
+        private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.FillEllipse(Brushes.Blue, new Rectangle(Top, Left, (int)BallRatio, (int)BallRatio));
             Ball = g;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             Left += 1;
             Top += 1;
@@ -40,7 +40,7 @@ namespace WinFormsApp6
 
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void MainForm_Resize(object sender, EventArgs e)
         {
             ResizeBall();
         }
