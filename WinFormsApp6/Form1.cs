@@ -1,6 +1,6 @@
 namespace WinFormsApp6
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         // vector2;
         private int Top;
@@ -10,7 +10,7 @@ namespace WinFormsApp6
         private double BallRatio;
         private Graphics Ball;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
