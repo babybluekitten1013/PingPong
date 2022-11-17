@@ -21,13 +21,13 @@ namespace WinFormsApp6
             WindowState = FormWindowState.Maximized;
             FormHeight = this.Height;
             FormWidth = this.Width;
+            BallRatio = FormWidth / (double)FormHeight * 100;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            BallRatio = FormWidth / (double)FormHeight;
-            g.FillEllipse(Brushes.Blue, new Rectangle(Top, Left, (int)BallRatio * 100, (int)BallRatio * 100));
+            g.FillEllipse(Brushes.Blue, new Rectangle(Top, Left, (int)BallRatio, (int)BallRatio));
             Ball = g;
         }
 
@@ -38,6 +38,16 @@ namespace WinFormsApp6
            
             Invalidate();   
 
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            ResizeBall();
+        }
+
+        private void ResizeBall()
+        {
+            BallRatio = this.Width / (double)this.Height * 100;
         }
     }
 }
