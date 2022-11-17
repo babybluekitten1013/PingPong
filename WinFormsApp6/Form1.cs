@@ -47,7 +47,9 @@ namespace WinFormsApp6
 
         private void ResizeBall()
         {
-            BallRatio = this.Width / (double)this.Height * 100;
+            FormHeight = this.Height;
+            FormWidth = this.Width;
+            BallRatio = FormWidth / (double)FormHeight * 100;
         }
     }
 }
