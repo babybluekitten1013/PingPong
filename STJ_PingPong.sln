@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp6", "WinFormsApp6\WinFormsApp6.csproj", "{7C11B207-B7F4-4BA7-BB06-12E466007677}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "STJ_PingPong", "WinFormsApp6\STJ_PingPong.csproj", "{7C11B207-B7F4-4BA7-BB06-12E466007677}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
