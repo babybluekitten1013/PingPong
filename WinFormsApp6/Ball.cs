@@ -16,6 +16,8 @@ namespace STJ_PingPong
         public Ball(int FormHeight, int FormWidth)
         {
             BallRatio = FormWidth / (double)FormHeight * 100;
+            Top = FormWidth / 2;
+            Left = FormHeight / 2;
         }
 
         public void Ball_Paint(object sender, PaintEventArgs e)

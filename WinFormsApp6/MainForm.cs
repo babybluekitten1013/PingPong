@@ -18,8 +18,6 @@ namespace WinFormsApp6
         private void MainForm_Load(object sender, EventArgs e)
         {
             CreateBall = new Ball(this.Height, this.Width);
-            Top = this.Width / 2;
-            Left = this.Height / 2;
             WindowState = FormWindowState.Maximized;
         }
         private void MainForm_Paint(object sender, PaintEventArgs e)
