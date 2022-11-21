@@ -11,7 +11,7 @@ namespace STJ_PingPong
         private int XAxis;
         private int YAxis;
         private double BallRatio;
-        private Graphics BallGraphics;
+        private Rectangle BallGraphics;
 
         public Ball(int FormHeight, int FormWidth)
         {
@@ -23,8 +23,9 @@ namespace STJ_PingPong
         public void Ball_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.FillEllipse(Brushes.Blue, new Rectangle(XAxis, YAxis, (int)BallRatio, (int)BallRatio));
-            BallGraphics = g;
+            BallGraphics = new Rectangle(XAxis, YAxis, (int)BallRatio, (int)BallRatio);
+            g.FillEllipse(Brushes.Blue, BallGraphics);
+            
         }
         
         public void ResizeBall(int NewFormHeight, int NewFormWidth)
@@ -32,18 +33,29 @@ namespace STJ_PingPong
             BallRatio = NewFormWidth / (double)NewFormHeight * 100;
         }
 
-        public void Move(int FormTop, int FormBottom)
+        public void Move(Rectangle FormBounds)
         {
-            if(XAxis < FormBottom)
+
+            //XAxis += 20;
+     
+
+            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormBounds.Height)
             {
-                YAxis += 8;
-                XAxis +=8;
+                YAxis -= 20;
+                //XAxis -= 20;
             }
-            else if(XAxis > FormBottom)
+            else if(BallGraphics.Y > 0 || BallGraphics.Y + BallGraphics.Height < FormBounds.Height)
             {
-                YAxis -= 8;
-                XAxis -= 8;
+                YAxis += 20;
             }
+
+
+            //else if (BallGraphics.Y + BallGraphics.Height < FormBounds.Height)
+            //{
+            //    YAxis += 20;
+            //    XAxis += 20;
+            //}
+
         }
     }
 }
