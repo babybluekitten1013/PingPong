@@ -12,6 +12,7 @@ namespace STJ_PingPong
         private int XAxis;
         private int YAxis;
         private int MoveYAxis = 20;
+        private int MoveXAxis = 20;
         private double BallRatio;
         private Rectangle BallGraphics;
 
@@ -35,27 +36,23 @@ namespace STJ_PingPong
             BallRatio = NewFormWidth / (double)NewFormHeight * 100;
         }
 
-        public void Move(Size FormBounds)
+        public void Move(Size FormsClientSize)
         {
 
             //XAxis += 20;
 
 
-            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormBounds.Height)
+            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
             {
                 MoveYAxis = -MoveYAxis;
-                //XAxis -= 20;
             }
             YAxis += MoveYAxis;
-
-
-
-            //else if (BallGraphics.Y + BallGraphics.Height < FormBounds.Height)
-            //{
-            //    YAxis += 20;
-            //    XAxis += 20;
-            //}
-
+            
+            if (BallGraphics.X < 0 || BallGraphics.X + BallGraphics.Width > FormsClientSize.Width)
+            {
+                MoveXAxis = -MoveXAxis;
+            }
+            XAxis += MoveXAxis;
         }
     }
 }
