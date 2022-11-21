@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace STJ_PingPong
 {
@@ -10,6 +11,7 @@ namespace STJ_PingPong
     {
         private int XAxis;
         private int YAxis;
+        private int MoveYAxis = 20;
         private double BallRatio;
         private Rectangle BallGraphics;
 
@@ -33,21 +35,19 @@ namespace STJ_PingPong
             BallRatio = NewFormWidth / (double)NewFormHeight * 100;
         }
 
-        public void Move(Rectangle FormBounds)
+        public void Move(Size FormBounds)
         {
 
             //XAxis += 20;
-     
+
 
             if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormBounds.Height)
             {
-                YAxis -= 20;
+                MoveYAxis = -MoveYAxis;
                 //XAxis -= 20;
             }
-            else if(BallGraphics.Y > 0 || BallGraphics.Y + BallGraphics.Height < FormBounds.Height)
-            {
-                YAxis += 20;
-            }
+            YAxis += MoveYAxis;
+
 
 
             //else if (BallGraphics.Y + BallGraphics.Height < FormBounds.Height)

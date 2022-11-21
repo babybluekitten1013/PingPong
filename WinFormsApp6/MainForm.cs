@@ -31,7 +31,7 @@ namespace WinFormsApp6
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            CreateBall.Move(this.Bounds);
+            CreateBall.Move(this.ClientSize);
             Invalidate();
         }
     }
