@@ -38,5 +38,17 @@ namespace WinFormsApp6
             CreateBall.Move(this.ClientSize);
             Invalidate();
         }
+
+        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if((Keys)e.KeyChar == Keys.W)
+            {
+                CreatePuck.MoveForward(this.ClientSize);
+            }
+            else if ((Keys) e.KeyChar == Keys.S)
+            {
+                CreatePuck.MoveBackward(this.ClientSize);
+            }
+        }
     }
 }

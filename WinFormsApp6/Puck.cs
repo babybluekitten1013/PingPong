@@ -10,6 +10,7 @@ namespace STJ_PingPong
     {
         private int XAxis;
         private int YAxis;
+        private int MoveYAxis = 20;
         private double ScreenRatio;
         private Rectangle BallGraphics;
 
@@ -30,6 +31,23 @@ namespace STJ_PingPong
         public void ResizePuck(int NewFormHeight, int NewFormWidth)
         {
             ScreenRatio = NewFormWidth / (double)NewFormHeight * 100;
+        }
+
+        public void MoveForward(Size FormsClientSize)
+        {
+            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
+            {
+                MoveYAxis = -MoveYAxis;
+            }
+            YAxis += MoveYAxis;
+        }
+        public void MoveBackward(Size FormsClientSize)
+        {
+            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
+            {
+                MoveYAxis = -MoveYAxis;
+            }
+            YAxis += MoveYAxis;
         }
     }
 }
