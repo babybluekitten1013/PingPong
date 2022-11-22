@@ -38,17 +38,13 @@ namespace STJ_PingPong
 
         public void Move(Size FormsClientSize)
         {
-
-            //XAxis += 20;
-
-
             if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
             {
                 MoveYAxis = -MoveYAxis;
             }
             YAxis += MoveYAxis;
             
-            if (BallGraphics.X < 0 || BallGraphics.X + BallGraphics.Width > FormsClientSize.Width)
+            if (BallGraphics.X < 0)
             {
                 MoveXAxis = -MoveXAxis;
             }
