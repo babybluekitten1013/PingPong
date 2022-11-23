@@ -39,16 +39,16 @@ namespace WinFormsApp6
             Invalidate();
         }
 
-        private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyChar.ToString() == Keys.W.ToString())
-            {
-                CreatePuck.MoveForward(this.ClientSize);
-            }
-            else if (e.KeyChar == (char)Keys.S)
-            {
-                CreatePuck.MoveBackward(this.ClientSize);
-            }
+            //if (e.KeyValue == Keys.W)
+            //{
+            //    CreatePuck.MoveForward(this.ClientSize);
+            //}
+            //else if (e.KeyValue ==)
+            //{
+            //    CreatePuck.MoveBackward(this.ClientSize);
+            //}
         }
     }
 }
