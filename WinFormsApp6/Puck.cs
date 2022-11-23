@@ -12,7 +12,7 @@ namespace STJ_PingPong
         private int YAxis;
         private int MoveYAxis = 20;
         private double ScreenRatio;
-        private Rectangle BallGraphics;
+        private Rectangle PuckGraphics;
 
         public Puck()
         {
@@ -28,8 +28,8 @@ namespace STJ_PingPong
         public void Puck_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            BallGraphics = new Rectangle(XAxis, YAxis, (int)ScreenRatio/2, (int)ScreenRatio);
-            g.FillRectangle(Brushes.Black, BallGraphics);
+            PuckGraphics = new Rectangle(XAxis, YAxis, (int)ScreenRatio/2, (int)ScreenRatio);
+            g.FillRectangle(Brushes.Black, PuckGraphics);
         }
 
         public void ResizePuck(int NewFormHeight, int NewFormWidth)
@@ -37,21 +37,27 @@ namespace STJ_PingPong
             ScreenRatio = NewFormWidth / (double)NewFormHeight * 100;
         }
 
-        public void MoveForward(Size FormsClientSize)
+        public void MoveForward(int FormsClientSize)
         {
-            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
+            if (PuckGraphics.Y <= FormsClientSize /*|| PuckGraphics.Y - PuckGraphics.Height < 0*/)
             {
-                MoveYAxis = -MoveYAxis;
+                
             }
-            YAxis += MoveYAxis;
+            else
+            {
+                YAxis -= MoveYAxis;
+            }
         }
         public void MoveBackward(Size FormsClientSize)
         {
-            if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
+            if (PuckGraphics.Y >= FormsClientSize.Height || PuckGraphics.Y + PuckGraphics.Height > FormsClientSize.Height)
             {
-                MoveYAxis = -MoveYAxis;
+
             }
-            YAxis += MoveYAxis;
+            else
+            {
+                YAxis += MoveYAxis;
+            }
         }
     }
 }

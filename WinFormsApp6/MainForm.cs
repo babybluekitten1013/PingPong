@@ -37,14 +37,14 @@ namespace WinFormsApp6
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (e.KeyValue == Keys.W)
-            //{
-            //    CreatePuck.MoveForward(this.ClientSize);
-            //}
-            //else if (e.KeyValue ==)
-            //{
-            //    CreatePuck.MoveBackward(this.ClientSize);
-            //}
+            if (e.KeyData == Keys.W)
+            {
+                CreatePuck.MoveForward(this.Top);
+            }
+            else if (e.KeyData == Keys.S)
+            {
+                CreatePuck.MoveBackward(this.ClientSize);
+            }
         }
     }
 }
