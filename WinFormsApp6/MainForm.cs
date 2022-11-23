@@ -5,12 +5,8 @@ namespace WinFormsApp6
 {
     public partial class MainForm : Form
     {
-        // vector2;
-
-        //private int FormHeight;
-        //private int FormWidth;
-        private Ball CreateBall;
-        private Puck CreatePuck;
+        private Ball CreateBall = new Ball();
+        private Puck CreatePuck = new Puck();
 
         public MainForm()
         {

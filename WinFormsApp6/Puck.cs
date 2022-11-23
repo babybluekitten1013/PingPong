@@ -14,6 +14,11 @@ namespace STJ_PingPong
         private double ScreenRatio;
         private Rectangle BallGraphics;
 
+        public Puck()
+        {
+
+        }
+
         public Puck(int FormHeight, int FormWidth)
         {
             ScreenRatio = FormWidth / (double)FormHeight * 100;

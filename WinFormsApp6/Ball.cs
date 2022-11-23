@@ -16,6 +16,11 @@ namespace STJ_PingPong
         private double BallRatio;
         private Rectangle BallGraphics;
 
+        public Ball()
+        {
+
+        }
+
         public Ball(int FormHeight, int FormWidth)
         {
             BallRatio = FormWidth / (double)FormHeight * 100;
