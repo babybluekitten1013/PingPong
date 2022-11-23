@@ -8,7 +8,7 @@ namespace STJ_PingPong
 {
     internal class Puck
     {
-        private int XAxis;
+        private int XAxis = 1;
         private int YAxis;
         private int MoveYAxis = 20;
         private double ScreenRatio;
@@ -17,7 +17,6 @@ namespace STJ_PingPong
         public Puck(int FormHeight, int FormWidth)
         {
             ScreenRatio = FormWidth / (double)FormHeight * 100;
-            XAxis = 0;
             YAxis = FormHeight / 2;
         }
 

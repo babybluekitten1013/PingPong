@@ -41,11 +41,11 @@ namespace WinFormsApp6
 
         private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if((Keys)e.KeyChar == Keys.W)
+            if(e.KeyChar.ToString() == Keys.W.ToString())
             {
                 CreatePuck.MoveForward(this.ClientSize);
             }
-            else if ((Keys) e.KeyChar == Keys.S)
+            else if (e.KeyChar == (char)Keys.S)
             {
                 CreatePuck.MoveBackward(this.ClientSize);
             }
