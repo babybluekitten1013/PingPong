@@ -6,8 +6,10 @@ namespace WinFormsApp6
     public partial class MainForm : Form
     {
         private Ball CreateBall = new Ball();
-        private Puck1 CreatePuck = new Puck1();
-        private Puck2 CreatePuck2 = new Puck2();
+        private Puck CreatePuck = new Puck();
+        private Puck CreatePuck2 = new Puck();
+        private int ClientSizeHeight;
+        private int ClientSizeWidth;
 
         public MainForm()
         {
@@ -15,10 +17,12 @@ namespace WinFormsApp6
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            CreateBall = new Ball(this.Height, this.Width);
-            CreatePuck = new Puck1(this.Height, this.Width);
-            CreatePuck2 = new Puck2(this.Height, this.Width);
             WindowState = FormWindowState.Maximized;
+            ClientSizeWidth = this.ClientSize.Width;
+            ClientSizeHeight = this.ClientSize.Height;
+            CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth, this.DesktopBounds.Right); ;
         }
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
@@ -28,9 +32,11 @@ namespace WinFormsApp6
         }
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            CreateBall.ResizeBall(this.Height, this.Width);
-            CreatePuck.ResizePuck(this.Height, this.Width);
-            CreatePuck2.ResizePuck(this.Height, this.Width);
+            ClientSizeHeight = this.ClientSize.Height;
+            ClientSizeWidth = this.ClientSize.Width;
+            CreateBall.ResizeBall(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck.ResizePuck(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck2.ResizePuck(ClientSizeHeight, ClientSizeWidth);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -49,17 +55,13 @@ namespace WinFormsApp6
             {
                 CreatePuck.MoveBackward(this.ClientSize);
             }
-        }
-
-        private void MainForm_KeyDown2(object sender, KeyEventArgs e) // doesn't know about Puck2 class
-        {
-            if (e.KeyData == Keys.Up)
+            else if (e.KeyData == Keys.Up)
             {
-                CreatePuck.MoveForward(this.Top);
+                CreatePuck2.MoveForward(this.Top);
             }
             else if (e.KeyData == Keys.Down)
             {
-                CreatePuck.MoveBackward(this.ClientSize);
+                CreatePuck2.MoveBackward(this.ClientSize);
             }
         }
     }

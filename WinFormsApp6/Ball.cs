@@ -23,7 +23,7 @@ namespace STJ_PingPong
 
         public Ball(int FormHeight, int FormWidth)
         {
-            BallRatio = FormWidth / (double)FormHeight * 100;
+            BallRatio = FormWidth / (double)FormHeight * 60;
             XAxis = FormWidth / 2;
             YAxis = FormHeight / 2;
         }
