@@ -43,21 +43,21 @@ namespace STJ_PingPong
 
         public void Move(Size FormsClientSize, Rectangle FirstPuck, Rectangle SecondPuck)
         {
-            if (BallGraphics.IntersectsWith(SecondPuck) || BallGraphics.IntersectsWith(FirstPuck))
+            if (BallGraphics.IntersectsWith(SecondPuck))
             {
-                MoveYAxis = -MoveYAxis;
-                MoveXAxis = -MoveXAxis;
+                MoveYAxis = -MoveYAxis - 10;
+                MoveXAxis = -MoveXAxis - 10;
+            }
+            else if (BallGraphics.IntersectsWith(FirstPuck))
+            {
+                MoveYAxis = -MoveYAxis + 10;
+                MoveXAxis = -MoveXAxis + 10;
             }
             else if (BallGraphics.Y < 0 || BallGraphics.Y + BallGraphics.Height > FormsClientSize.Height)
             {
                 MoveYAxis = -MoveYAxis;
             }
             YAxis += MoveYAxis;
-            
-            if (BallGraphics.X < 0)
-            {
-                MoveXAxis = -MoveXAxis;
-            }
             XAxis += MoveXAxis;
         }
 
