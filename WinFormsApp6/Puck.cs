@@ -13,7 +13,8 @@ namespace STJ_PingPong
         private int _YAxis;
         private int _MoveYAxis = 20;
         private double _ScreenRatio;
-        private Rectangle _PuckGraphics;
+        private Rectangle _PuckGraphic;
+        private Rectangle _SecondPuckGraphic;
 
         public Puck()
         {
@@ -31,20 +32,20 @@ namespace STJ_PingPong
         public void Puck_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            _PuckGraphics = new Rectangle(_XAxis, _YAxis, (int)_ScreenRatio/2, (int)_ScreenRatio);
-            g.FillRectangle(Brushes.Black, _PuckGraphics);
+            _PuckGraphic = new Rectangle(_XAxis, _YAxis, (int)_ScreenRatio/2, (int)_ScreenRatio);
+            g.FillRectangle(Brushes.Black, _PuckGraphic);
         }
 
         public void Puck_Paint2(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            _PuckGraphics = new Rectangle(_Puck2XAxis, _YAxis, (int)_ScreenRatio / 2, (int)_ScreenRatio);
-            g.FillRectangle(Brushes.Black, _PuckGraphics);
+            _SecondPuckGraphic = new Rectangle(_Puck2XAxis, _YAxis, (int)_ScreenRatio / 2, (int)_ScreenRatio);
+            g.FillRectangle(Brushes.Black, _SecondPuckGraphic);
         }
 
         public void MoveForward(int FormsClientSize)
         {
-            if (!(_PuckGraphics.Y <= FormsClientSize))
+            if (!(_PuckGraphic.Y <= FormsClientSize))
             {
                 _YAxis -= _MoveYAxis;
 
@@ -52,10 +53,20 @@ namespace STJ_PingPong
         }
         public void MoveBackward(Size FormsClientSize)
         {
-            if (!(_PuckGraphics.Y >= FormsClientSize.Height) || !(_PuckGraphics.Y + _PuckGraphics.Height > FormsClientSize.Height))
+            if (!(_PuckGraphic.Y >= FormsClientSize.Height) || !(_PuckGraphic.Y + _PuckGraphic.Height > FormsClientSize.Height))
             {
                 _YAxis += _MoveYAxis;
             }
+        }
+
+        public Rectangle GrabFirstPuck
+        {
+            get { return _PuckGraphic; }
+        }
+
+        public Rectangle GrabSecondPuck
+        {
+            get { return _SecondPuckGraphic; }
         }
     }
 }

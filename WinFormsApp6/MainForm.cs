@@ -21,6 +21,7 @@ namespace WinFormsApp6
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+
             ClientSizeWidth = this.ClientSize.Width;
             ClientSizeHeight = this.ClientSize.Height;
             CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
@@ -36,7 +37,7 @@ namespace WinFormsApp6
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            CreateBall.Move(this.ClientSize);
+            CreateBall.Move(this.ClientSize, CreatePuck.GrabFirstPuck, CreatePuck2.GrabSecondPuck);
             Invalidate();
         }
 
