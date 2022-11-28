@@ -45,7 +45,7 @@ namespace STJ_PingPong
         {
             if (BallGraphics.IntersectsWith(SecondPuck))
             {
-                MoveYAxis = -MoveYAxis - 10;
+                MoveYAxis = MoveYAxis - 10;
                 MoveXAxis = -MoveXAxis - 10;
             }
             else if (BallGraphics.IntersectsWith(FirstPuck))

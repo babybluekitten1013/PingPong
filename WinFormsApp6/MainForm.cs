@@ -14,6 +14,7 @@ namespace WinFormsApp6
         public MainForm()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
