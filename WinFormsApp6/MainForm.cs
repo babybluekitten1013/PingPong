@@ -10,6 +10,8 @@ namespace WinFormsApp6
         private Puck CreatePuck2 = new Puck();
         private int ClientSizeHeight;
         private int ClientSizeWidth;
+        private int Player1Score = 0;
+        private int Player2Score = 0;
 
         public MainForm()
         {
@@ -26,13 +28,30 @@ namespace WinFormsApp6
             ClientSizeHeight = this.ClientSize.Height;
             CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
             CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
-            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth); 
+            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth);
+
+            Label P1Score = new Label();
+            Label P2Score = new Label();
+
+            P1Score.Location = new Point(300, 50/*ClientSizeWidth * (2 / 5), ClientSizeHeight * (1 / 10)*/);
+            P2Score.Location = new Point(900, 50/*ClientSizeWidth * (4 / 5), ClientSizeHeight * (1 / 10)*/);
+            P1Score.Text = Player1Score.ToString();
+            P2Score.Text = Player2Score.ToString();
+            P1Score.Size = new System.Drawing.Size (ClientSizeWidth / ClientSizeHeight * (25), ClientSizeWidth / ClientSizeHeight * (25));
+            P2Score.Size = new System.Drawing.Size(ClientSizeWidth / ClientSizeHeight * (25), ClientSizeWidth / ClientSizeHeight * (25));
+
+            this.Controls.Add(P1Score);
+            this.Controls.Add(P2Score);
+
+
         }
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             CreateBall.Ball_Paint(this, e);
             CreatePuck.Puck_Paint(this, e);
             CreatePuck2.Puck_Paint2(this, e);
+
+            WinRound();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -58,6 +77,23 @@ namespace WinFormsApp6
             else if (e.KeyData == Keys.Down)
             {
                 CreatePuck2.MoveBackward(this.ClientSize);
+            }
+        }
+        private void WinRound()
+        {
+            if (CreateBall.BallPosition < 0)
+            {
+                Player2Score++;
+                this.Invalidate();
+                this.Refresh();
+                InitializeComponent();
+            }
+            else if(CreateBall.BallPosition > ClientSizeWidth)
+            {
+                Player1Score++;
+                this.Invalidate();
+                this.Refresh();
+                InitializeComponent();
             }
         }
     }
