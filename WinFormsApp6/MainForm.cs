@@ -1,4 +1,5 @@
 using STJ_PingPong;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace WinFormsApp6
@@ -12,6 +13,8 @@ namespace WinFormsApp6
         private int ClientSizeWidth;
         private int Player1Score = 0;
         private int Player2Score = 0;
+        private string PlayerOneLblTxt = "Player 1 Score\n<><><><><><><><>\n";
+        private string PlayerTwoLblTxt = "Player 2 Score\n<><><><><><><><>\n";
         private Label P1Score = new Label();
         private Label P2Score = new Label();
 
@@ -36,8 +39,8 @@ namespace WinFormsApp6
 
             P1Score.Location = new Point((int)(ClientSizeWidth * (double)(.35)), 50);
             P2Score.Location = new Point((int)(ClientSizeWidth * (double)(.55)), 50);
-            P1Score.Text = "Player 1 Score\n<><><><><><><><>\n" + Player1Score.ToString();
-            P2Score.Text = "Player 2 Score\n<><><><><><><><>\n" + Player2Score.ToString();
+            P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
+            P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
             P1Score.AutoSize = true;
             P2Score.AutoSize = true;
             P1Score.Font = new Font("Verdona", 20, FontStyle.Bold);
@@ -96,16 +99,20 @@ namespace WinFormsApp6
             {
                 RestartRound();
                 Player2Score++;
-                P2Score.Text = Player2Score.ToString();
+                P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
             }
-            else if(CreateBall.BallPosition > ClientSizeWidth)
+            else if (CreateBall.BallPosition > ClientSizeWidth)
             {
                 RestartRound();
                 Player1Score++;
-                this.Invalidate();
-                this.Refresh();
-                InitializeComponent();
+                P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
             }
+        }
+        private void RestartRound()
+        {
+            CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth);
         }
     }
 }

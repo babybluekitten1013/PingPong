@@ -43,6 +43,9 @@ namespace STJ_PingPong
 
         public void Move(Size FormsClientSize, Rectangle FirstPuck, Rectangle SecondPuck)
         {
+
+            // Idea for Sarah : Perhaps we can make it to where the ball only moves when it hits the
+            // front of the puck not the back which means we would need to get rid of the intersectswith in the if statements and use the rectangles measurement in some way.
             if (BallGraphics.IntersectsWith(SecondPuck))
             {
                 MoveYAxis = MoveYAxis - 10;
