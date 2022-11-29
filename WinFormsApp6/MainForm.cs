@@ -34,10 +34,20 @@ namespace WinFormsApp6
             Label P1Score = new Label();
             Label P2Score = new Label();
 
-            P1Score.Location = new Point(300, 50/*ClientSizeWidth * (2 / 5), ClientSizeHeight * (1 / 10)*/);
-            P2Score.Location = new Point(900, 50/*ClientSizeWidth * (4 / 5), ClientSizeHeight * (1 / 10)*/);
-            P1Score.Text = Player1Score.ToString();
-            P2Score.Text = Player2Score.ToString();
+            P1Score.Location = new Point((int)(ClientSizeWidth * (double)(.35)), 50);
+            P2Score.Location = new Point((int)(ClientSizeWidth * (double)(.55)), 50);
+            P1Score.Text = "Player 1 Score\n<><><><><><><><>\n" + Player1Score.ToString();
+            P2Score.Text = "Player 2 Score\n<><><><><><><><>\n" + Player2Score.ToString();
+            P1Score.AutoSize = true;
+            P2Score.AutoSize = true;
+            P1Score.Font = new Font("Verdona", 20, FontStyle.Bold);
+            P2Score.Font = new Font("Verdona", 20, FontStyle.Bold);
+            P1Score.TextAlign = ContentAlignment.MiddleCenter;
+            P2Score.TextAlign = ContentAlignment.MiddleCenter;
+            P1Score.BackColor = Color.HotPink;
+            P2Score.BackColor = Color.HotPink;
+            P1Score.ForeColor = Color.AliceBlue;
+            P2Score.ForeColor = Color.AliceBlue;
             P1Score.Size = new System.Drawing.Size (ClientSizeWidth / ClientSizeHeight * (25), ClientSizeWidth / ClientSizeHeight * (25));
             P2Score.Size = new System.Drawing.Size(ClientSizeWidth / ClientSizeHeight * (25), ClientSizeWidth / ClientSizeHeight * (25));
 
@@ -85,16 +95,14 @@ namespace WinFormsApp6
             if (CreateBall.BallPosition < 0)
             {
                 Player2Score++;
-                this.Invalidate();
+                Timer.Dispose();
                 this.Refresh();
-                InitializeComponent();
             }
             else if(CreateBall.BallPosition > ClientSizeWidth)
             {
                 Player1Score++;
-                this.Invalidate();
+                Timer.Dispose();
                 this.Refresh();
-                InitializeComponent();
             }
         }
     }
