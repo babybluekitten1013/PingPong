@@ -12,6 +12,8 @@ namespace WinFormsApp6
         private int ClientSizeWidth;
         private int Player1Score = 0;
         private int Player2Score = 0;
+        private Label P1Score = new Label();
+        private Label P2Score = new Label();
 
         public MainForm()
         {
@@ -31,8 +33,6 @@ namespace WinFormsApp6
             CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
             CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth);
 
-            Label P1Score = new Label();
-            Label P2Score = new Label();
 
             P1Score.Location = new Point(300, 50/*ClientSizeWidth * (2 / 5), ClientSizeHeight * (1 / 10)*/);
             P2Score.Location = new Point(900, 50/*ClientSizeWidth * (4 / 5), ClientSizeHeight * (1 / 10)*/);
@@ -84,18 +84,22 @@ namespace WinFormsApp6
         {
             if (CreateBall.BallPosition < 0)
             {
+                RestartRound();
                 Player2Score++;
-                this.Invalidate();
-                this.Refresh();
-                InitializeComponent();
+                P2Score.Text = Player2Score.ToString();
             }
             else if(CreateBall.BallPosition > ClientSizeWidth)
             {
+                RestartRound();
                 Player1Score++;
-                this.Invalidate();
-                this.Refresh();
-                InitializeComponent();
+                P1Score.Text = Player1Score.ToString();
             }
+        }
+        private void RestartRound()
+        {
+            CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
+            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth);
         }
     }
 }
