@@ -9,6 +9,7 @@ namespace STJ_PingPong
 {
     internal class Ball
     {
+        //these are our ball variables
         public int posX;
         public int posY;
         private int movY = 5;
@@ -16,12 +17,14 @@ namespace STJ_PingPong
         private int radius = 60;
         private Rectangle graphics;
 
+        // this is where our ball is at
         public Ball(int x, int y)
         {
             posX = x;
             posY = y;
         }
 
+        // this is us making our ball on the screen
         public void Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -31,8 +34,10 @@ namespace STJ_PingPong
             
         }
 
+        // this is how the ball moves
         public void Move(Size FormsClientSize, Rectangle FirstPuck, Rectangle SecondPuck)
         {
+            // this makes the ball go off in a random direction... just a little bit
             Random rnd = new Random();
 
             if (graphics.IntersectsWith(FirstPuck) || graphics.IntersectsWith(SecondPuck))

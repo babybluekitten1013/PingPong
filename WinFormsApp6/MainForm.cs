@@ -6,6 +6,7 @@ namespace WinFormsApp6
 {
     public partial class MainForm : Form
     {
+        //variables of ball, both pucks, and score cards
         private Ball Ball;
         private Puck Puck;
         private Puck Puck2;
@@ -25,11 +26,13 @@ namespace WinFormsApp6
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // max sized window
             WindowState = FormWindowState.Maximized;
 
+            // always start with a new round
             RestartRound();
 
-
+            // this is all play score cards including text, color, and size
             P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
             P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
             P1Score.AutoSize = true;
@@ -43,29 +46,32 @@ namespace WinFormsApp6
             P1Score.ForeColor = Color.AliceBlue;
             P2Score.ForeColor = Color.AliceBlue;
 
+            // yep this is where the score card is on the screen
             P1Score.Location = new Point(this.ClientSize.Width / 2 - 450, 50);
             P2Score.Location = new Point(this.ClientSize.Width / 2 + 150, 50);
 
             this.Controls.Add(P1Score);
             this.Controls.Add(P2Score);
-
-
         }
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
+            // we are putting both pucks and the ball on the screen
             Puck.Paint(this, e);
             Puck2.Paint(this, e);
             Ball.Paint(this, e);
 
+            // this is to check to see if we scored
             WinRound();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
+            // how often this happens 
             Ball.Move(this.ClientSize, Puck.graphic, Puck2.graphic);
             Invalidate();
         }
 
+        // these are the controlls for moving two pucks independently of each other
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.W)
@@ -85,22 +91,26 @@ namespace WinFormsApp6
                 Puck2.Move(1);
             }
         }
+        // yay we won a game
         private void WinRound()
         {
             if (Ball.posX < 0)
             {
+                // we restart a round after a score is scored
                 RestartRound();
                 Player2Score++;
                 P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
             }
             else if (Ball.posX >= this.ClientSize.Width)
             {
+                // same thing on the other side
                 RestartRound();
                 Player1Score++;
                 P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
             }
         }
 
+        // this is how we restart the round the balls and pucks go back to where they were when the game started
         private void RestartRound()
         {
             Ball = new Ball(this.ClientSize.Width/2, this.ClientSize.Height/2);

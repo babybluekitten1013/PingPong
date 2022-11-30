@@ -9,6 +9,7 @@ namespace STJ_PingPong
 {
     internal class Puck
     {
+        //starting position, shape and size of pucks
         private int posX = 0;
         private int posY;
         private int movY = 20;
@@ -18,6 +19,7 @@ namespace STJ_PingPong
 
         public Rectangle graphic;
 
+        // where the pucks start on the screen
         public Puck(int x, int y, int height)
         {
             posX = x;
@@ -25,6 +27,7 @@ namespace STJ_PingPong
             screenHeight = height;
         }
 
+        // painted the pucks on the screen
         public void Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -32,7 +35,7 @@ namespace STJ_PingPong
             g.FillRectangle(Brushes.Black, graphic);
         }
 
-
+        // moving the pucks up and down without going off the screen
         public void Move(int direction)
         {
             posY += direction * movY;
