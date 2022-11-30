@@ -35,15 +35,15 @@
             // Timer
             // 
             this.Timer.Enabled = true;
+            this.Timer.Interval = 1;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 900);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);

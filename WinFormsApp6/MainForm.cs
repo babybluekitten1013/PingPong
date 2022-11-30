@@ -6,11 +6,9 @@ namespace WinFormsApp6
 {
     public partial class MainForm : Form
     {
-        private Ball CreateBall = new Ball();
-        private Puck CreatePuck = new Puck();
-        private Puck CreatePuck2 = new Puck();
-        private int ClientSizeHeight;
-        private int ClientSizeWidth;
+        private Ball Ball;
+        private Puck Puck;
+        private Puck Puck2;
         private int Player1Score = 0;
         private int Player2Score = 0;
         private string PlayerOneLblTxt = "Player 1 Score\n<><><><><><><><>\n";
@@ -22,27 +20,22 @@ namespace WinFormsApp6
         {
             InitializeComponent();
             DoubleBuffered = true;
+            
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
 
-            ClientSizeWidth = this.ClientSize.Width;
-            ClientSizeHeight = this.ClientSize.Height;
-            CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
-            CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
-            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth);
+            RestartRound();
 
 
-            P1Score.Location = new Point((int)(ClientSizeWidth * (double)(.35)), 50);
-            P2Score.Location = new Point((int)(ClientSizeWidth * (double)(.55)), 50);
             P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
             P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
-            P1Score.AutoSize = true;
-            P2Score.AutoSize = true;
+            P1Score.Width = 300;
+            P1Score.Height = 100;
+            P2Score.Width = 300;
+            P2Score.Height = 100;
             P1Score.Font = new Font("Verdona", 20, FontStyle.Bold);
             P2Score.Font = new Font("Verdona", 20, FontStyle.Bold);
             P1Score.TextAlign = ContentAlignment.MiddleCenter;
@@ -51,8 +44,9 @@ namespace WinFormsApp6
             P2Score.BackColor = Color.HotPink;
             P1Score.ForeColor = Color.AliceBlue;
             P2Score.ForeColor = Color.AliceBlue;
-            P1Score.Size = new System.Drawing.Size (ClientSizeWidth / ClientSizeHeight * (25), ClientSizeWidth / ClientSizeHeight * (25));
-            P2Score.Size = new System.Drawing.Size(ClientSizeWidth / ClientSizeHeight * (25), ClientSizeWidth / ClientSizeHeight * (25));
+
+            P1Score.Location = new Point(this.ClientSize.Width / 2 - 450, 50);
+            P2Score.Location = new Point(this.ClientSize.Width / 2 + 150, 50);
 
             this.Controls.Add(P1Score);
             this.Controls.Add(P2Score);
@@ -61,16 +55,16 @@ namespace WinFormsApp6
         }
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
-            CreateBall.Ball_Paint(this, e);
-            CreatePuck.Puck_Paint(this, e);
-            CreatePuck2.Puck_Paint2(this, e);
+            Puck.Paint(this, e);
+            Puck2.Paint(this, e);
+            Ball.Paint(this, e);
 
             WinRound();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            CreateBall.Move(this.ClientSize, CreatePuck.GrabFirstPuck, CreatePuck2.GrabSecondPuck);
+            Ball.Move(this.ClientSize, Puck.graphic, Puck2.graphic);
             Invalidate();
         }
 
@@ -78,41 +72,42 @@ namespace WinFormsApp6
         {
             if (e.KeyData == Keys.W)
             {
-                CreatePuck.MoveForward(this.Top);
+                Puck.Move(-1);
             }
             else if (e.KeyData == Keys.S)
             {
-                CreatePuck.MoveBackward(this.ClientSize);
+                Puck.Move(1);
             }
             else if (e.KeyData == Keys.Up)
             {
-                CreatePuck2.MoveForward(this.Top);
+                Puck2.Move(-1);
             }
             else if (e.KeyData == Keys.Down)
             {
-                CreatePuck2.MoveBackward(this.ClientSize);
+                Puck2.Move(1);
             }
         }
         private void WinRound()
         {
-            if (CreateBall.BallPosition < 0)
+            if (Ball.posX < 0)
             {
                 RestartRound();
                 Player2Score++;
                 P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
             }
-            else if (CreateBall.BallPosition > ClientSizeWidth)
+            else if (Ball.posX >= this.ClientSize.Width)
             {
                 RestartRound();
                 Player1Score++;
                 P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
             }
         }
+
         private void RestartRound()
         {
-            CreateBall = new Ball(ClientSizeHeight, ClientSizeWidth);
-            CreatePuck = new Puck(ClientSizeHeight, ClientSizeWidth);
-            CreatePuck2 = new Puck(ClientSizeHeight, ClientSizeWidth);
+            Ball = new Ball(this.ClientSize.Width/2, this.ClientSize.Height/2);
+            Puck = new Puck(150, this.ClientSize.Height / 2, this.ClientSize.Height);
+            Puck2 = new Puck(this.ClientSize.Width - 200, this.ClientSize.Height / 2, this.ClientSize.Height);
         }
     }
 }
