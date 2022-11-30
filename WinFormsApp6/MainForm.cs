@@ -32,10 +32,8 @@ namespace WinFormsApp6
 
             P1Score.Text = PlayerOneLblTxt + Player1Score.ToString();
             P2Score.Text = PlayerTwoLblTxt + Player2Score.ToString();
-            P1Score.Width = 300;
-            P1Score.Height = 100;
-            P2Score.Width = 300;
-            P2Score.Height = 100;
+            P1Score.AutoSize = true;
+            P2Score.AutoSize= true;
             P1Score.Font = new Font("Verdona", 20, FontStyle.Bold);
             P2Score.Font = new Font("Verdona", 20, FontStyle.Bold);
             P1Score.TextAlign = ContentAlignment.MiddleCenter;
